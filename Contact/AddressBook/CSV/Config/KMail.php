@@ -4,7 +4,7 @@
 // {{{ Header
 
 /**
- * File contains KDE CSV address book configuration.
+ * File contains KMail CSV address book configuration.
  *
  * PHP versions 4 and 5
  *
@@ -55,7 +55,7 @@
 // }}}
 
 /**
- * KDE CSV address book configuration.
+ * KMail CSV address book configuration.
  *
  * @global array $GLOBALS['Contact_AddressBook_CSV_config']
  * @name $Contact_AddressBook_CSV_config
