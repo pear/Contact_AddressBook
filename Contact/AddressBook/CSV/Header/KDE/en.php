@@ -4,7 +4,7 @@
 // {{{ Header
 
 /**
- * File contains KDE CSV address book English header.
+ * File contains KMail CSV address book English header.
  *
  * PHP versions 4 and 5
  *
@@ -44,6 +44,7 @@
  *
  * @category FileFormats
  * @package AddressBook
+ * @subpackage CSV
  * @author Firman Wandayandi <firman@php.net>
  * @copyright Copyright (c) 2005 Firman Wandayandi
  * @license http://www.opensource.org/licenses/bsd-license.php
@@ -55,7 +56,7 @@
 // }}}
 
 /**
- * KDE CSV address book English header.
+ * KMail CSV address book English header.
  */
 $GLOBALS['Contact_AddressBook_CSV_header'] = array(
     'Formatted Name',
