@@ -1,0 +1,43 @@
+================================================================================
+                             Contact_AddressBook
+--------------------------------------------------------------------------------
+                   Eudora Address Book Gateaway Structure
+================================================================================
+
+$Id$
+
+
+Gateaway Structure
+
+  +-------------------+-----------------------------------------------+
+  | Key               | Description                                   |
+  +-------------------+-----------------------------------------------+
+  | first             | First Name                                    |
+  | last              | Last Name                                     |
+  | displayname       | Display Name                                  |
+  | nickname          | Nickname                                      |
+  | email             | Email                                         |
+  | email[N]          | Email [N] (N number begin from 2)             |
+  | otheremail        | Additional Email                              |
+  | otheremail[N]     | Additional Email [N] (N number begin from 2)  |
+  | phone             | Home phone                                    |
+  | fax               | Fax                                           |
+  | mobile            | Mobile phone                                  |
+  | address           | Home Street Address                           |
+  | city              | Home City                                     |
+  | state             | Home State/Province                           |
+  | zip               | Home ZIP/Postal Code                          |
+  | country           | Home Country                                  |
+  | address2          | Work Address                                  |
+  | phone2            | Work Phone                                    |
+  | fax2              | Office fax                                    |
+  | city2             | Work City                                     |
+  | state2            | Work State/Province                           |
+  | zip2              | Work ZIP/Postal Code                          |
+  | country2          | Work Country                                  |
+  | web2              | Work Web Page                                 |
+  | title             | Job Title                                     |
+  | company           | Organization                                  |
+  | web               | Home Web Page                                 |
+  | notes             | Notes                                         |
+  +-------------------+-----------------------------------------------+

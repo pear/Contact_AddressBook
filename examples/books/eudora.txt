@@ -1,0 +1,2 @@
+alias foo foo@bar.com
+note foo <otherweb:http://foo.bar.net><otherphone:00009999><otheremail:foo@bar.net><web2:http://www.bar.com><mobile2:9999999999><fax2:99999999><phone2:99999999><zip2:99999><country2:foo><state2:foo><city2:foo><address2:foo street 8><company:bar system><title:Web Developer><web:http://foo.bar.com><mobile:9999999999><fax:99999999><phone:99999999><zip:99999><country:foo><state:foo><city:foo><address:foo street 8><last:bar><first:foo><name:foo bar>nothing about foo!

@@ -1,0 +1,95 @@
+; +-----------------------------------------------------------------------+
+; | PEAR::Contact_AddressBook Definition File                             |
+; +-----------------------------------------------------------------------+
+; | Outlook Express CSV                                                   |
+; +-----------------------------------------------------------------------+
+;
+; $Id$
+
+
+; First Name
+0 = firstname
+
+; Last Name
+1 = lastname
+
+; Middle Name
+2 = middlename
+
+; Name
+3 = displayname
+
+; Nickname
+4 = nickname
+
+; Email Address
+5 = email
+
+; Home Address
+6 = home_address
+
+; Home City
+7 = home_city
+
+; Home Postal Code
+8 = home_zipcode
+
+; Home State
+9 = home_state
+
+; Home Country
+10 = home_country
+
+; Home Phone
+11 = home_phone
+
+; Home Fax
+12 = home_fax
+
+; Mobile Phone
+13 = mobile
+
+; Personal Web Page
+14 = homepage
+
+; Business Street
+15 = work_address
+
+; Business City
+16 = work_city
+
+; Business Postal Code
+17 = work_zipcode
+
+; Business State
+18 = work_state
+
+; Business Country
+19 = work_country
+
+; Business Web Page
+20 = work_homepage
+
+; Business Phone
+21 = work_phone
+
+; Business Fax
+22 = work_fax
+
+; Pager
+23 = pager
+
+; Organization
+24 = organization
+
+; Job Title
+25 = job_title
+
+; Department
+26 = department
+
+; Office Location   [Ignored]
+;27 = 
+
+; Notes
+28 = notes

@@ -1,0 +1,45 @@
+================================================================================
+                             Contact_AddressBook
+--------------------------------------------------------------------------------
+             Comma Separated Values Ms Outlook Express Address Book
+                             Gateaway Structure
+================================================================================
+
+$Id$
+
+
+Gateaway Structure
+
+  +-------------------+-----------------------------+
+  | Key               | Description                 |
+  +-------------------+-----------------------------+
+  |  0                | First Name                  |
+  |  1                | Last Name                   |
+  |  2                | Middle Name                 |
+  |  3                | Name                        |
+  |  4                | Nickname                    |
+  |  5                | Email Address               |
+  |  6                | Home Street                 |
+  |  7                | Home City                   |
+  |  8                | Home Postal Code            |
+  |  9                | Home State                  |
+  | 10                | Home Country/Region         |
+  | 11                | Home Phone                  |
+  | 12                | Home Fax                    |
+  | 13                | Mobile Phone                |
+  | 14                | Personal Web Page           |
+  | 15                | Business Street             |
+  | 16                | Business City               |
+  | 17                | Business Postal Code        |
+  | 18                | Business State              |
+  | 19                | Business Country/Region     |
+  | 20                | Business Web Page           |
+  | 21                | Business Phone              |
+  | 22                | Business Fax                |
+  | 23                | Pager                       |
+  | 24                | Company                     |
+  | 25                | Job Title                   |
+  | 26                | Department                  |
+  | 27                | Office Location             |
+  | 28                | Notes                       |
+  +-------------------+-----------------------------+

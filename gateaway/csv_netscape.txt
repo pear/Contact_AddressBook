@@ -1,0 +1,52 @@
+================================================================================
+                             Contact_AddressBook
+--------------------------------------------------------------------------------
+                 Comma Separated Values Netscape Address Book
+                             Gateaway Structure
+================================================================================
+
+$Id$
+
+
+Gateaway Structure
+
+  +-------------------+-----------------------------+
+  | Key               | Description                 |
+  +-------------------+-----------------------------+
+  |  0                | First Name                  |
+  |  1                | Last Name                   |
+  |  2                | Display Name                |
+  |  3                | Nickname                    |
+  |  4                | Primary Email               |
+  |  5                | Secondary Email             |
+  |  6                | Work Phone                  |
+  |  7                | Home Phone                  |
+  |  8                | Fax Number                  |
+  |  9                | Pager Number                |
+  | 10                | Mobile Number               |
+  | 11                | Home Address                |
+  | 12                | Home Address 2              |
+  | 13                | Home City                   |
+  | 14                | Home State                  |
+  | 15                | Home ZipCode                |
+  | 16                | Home Country                |
+  | 17                | Work Address                |
+  | 18                | Work Address 2              |
+  | 19                | Work City                   |
+  | 20                | Work State                  |
+  | 21                | Work ZipCode                |
+  | 22                | Work Country                |
+  | 23                | Job Title                   |
+  | 24                | Department                  |
+  | 25                | Organization                |
+  | 26                | Work Web Page               |
+  | 27                | Home Web Page               |
+  | 28                | Birth Year                  |
+  | 29                | Birth Month                 |
+  | 30                | Birth Day                   |
+  | 31                | Custom 1                    |
+  | 32                | Custom 2                    |
+  | 33                | Custom 3                    |
+  | 34                | Custom 4                    |
+  | 35                | Notes                       |
+  +-------------------+-----------------------------+
