@@ -1,95 +1,293 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0">
-  <name>Contact_AddressBook</name>
-  <summary>Address book export-import class</summary>
-  <description>Package provide export-import address book
-mechanism. Contact_AddressBook refers to
-needed structure, convert the various address
-book structure format into it, then you can
-easily store it into file, database or another
-storage media.
-</description>
-  <maintainers>
-    <maintainer>
-      <user>firman</user>
-      <name>Firman Wandayandi</name>
-      <email>firman@php.net</email>
-      <role>lead</role>
-    </maintainer>
+<package version="1.0" packagerversion="1.4.0a12">
+ <name>Contact_AddressBook</name>
+ <summary>Address book export-import class</summary>
+ <description>Package provide export-import address book mechanism. Contact_AddressBook refers to needed structure, convert the various address book structure format into it, then you can easily to store it into file, database or another storage media.
+ </description>
+ <maintainers>
+  <maintainer>
+   <user>firman</user>
+   <name>Firman Wandayandi</name>
+   <email>firman@php.net</email>
+   <role>lead</role>
+  </maintainer>
   </maintainers>
-  <release>
+ <release>
+  <version>0.4.0alpha1</version>
+  <date>2005-08-17</date>
+  <license>BSD License</license>
+  <state>alpha</state>
+  <notes>* Fixed bug in Contact_AddressBook_Builder_Eudora::build(), wrong way on &quot;notes&quot; tag
+* Fixed bug causes by File_CSV with force config (thanks to Andy Crain &lt;crain@fuse.net&gt;)
+* Fixed bug in Contact_AddressBook_Converter::prepare(), Contact_AddressBook_Converter::$isPrepared never assigned (thanks to Andy Crain &lt;crain@fuse.net&gt;)
+* Reconstructed file and directory structure
+* Renamed Contact_AddressBook_Builder_eudora to Contact_AddressBook_Eudora
+* Renamed Contact_AddressBook_Builder_csv to Contact_AddressBook_CSV
+* Renamed Contact_AddressBook_Parser_eudora to Contact_AddressBook_Parser_Eudora
+* Renamed Contact_AddressBook_Parser_CSV to Contact_AddressBook_Parser_csv
+* Renamed several files to pretty names
+* Moved all CSV address book related files under PEAR data dir &quot;Contact_AddressBook/CSV&quot;
+* Renamed format call names, see added logs
+* Changed the examples
+* Changed the release state to alpha
+- Removed &quot;definitions&quot; dir, now all definition files are under &quot;Defs&quot; dir
+- Removed Contact_AddressBook::isExportable(), each supported formats are exportable
+- Removed Contact_AddressBook::isImportable(), each supported formats are importable
+- Removed Contact_AddressBook_Builder_csv_netscape
+- Removed Contact_AddressBook_Builder_csv_outlook_express
++ Added new method Contact_AddressBook::isSupported(), find out the whether the format is supported or not
++ Added new class Contact_AddressBook_CSV for working with CSV
++ Added new class Contact_AddressBook_Converter_CSV, for CSV converting
++ Added several CSV related files in PEAR data dir &quot;Contact_AddressBook/CSV&quot;
++ Added new support for KMail (KDE Mailer), Ms Outlook, Palm Pilot and Yahoo!
++ Added several call names (case-insensitive),
+csv_wab =&gt; Ms Windows Address Book CSV
+csv_outlookexpress  =&gt; Ms Windows Outlook Express CSV (equal with csv_wab)
+csv_outlook =&gt; Ms Outlook CSV
+csv_mozilla =&gt; Mozilla Mailer CSV
+csv_thunderbird =&gt; Mozilla Thunderbird CSV (equal with csv_mozilla and csv_netscape)
+csv_netscape =&gt; Netscape Mailer CSV (equal with csv_mozilla and csv_thunderbird)
+csv_yahoo =&gt; Yahoo! CSV
+csv_palm =&gt; Palm CSV.
+eudora =&gt; Eudora address book
++ Upgraded File package dependency to version  &gt;= 1.2.1
+  </notes>
+  <deps>
+   <dep type="pkg" rel="ge" version="1.2.1" optional="no">PEAR</dep>
+   <dep type="pkg" rel="ge" version="1.2.1" optional="no">File</dep>
+   <dep type="pkg" rel="ge" version="2.0.1" optional="no">Net_UserAgent_Detect</dep>
+  </deps>
+  <filelist>
+   <dir name="/" baseinstalldir="">
+    <dir name="Contact">
+     <dir name="AddressBook">
+      <dir name="Builder">
+       <file role="php" name="CSV.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="php" name="Eudora.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /Contact/AddressBook/Builder -->
+      <dir name="Converter">
+       <file role="php" name="CSV.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /Contact/AddressBook/Converter -->
+      <dir name="Parser">
+       <file role="php" name="CSV.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="php" name="Eudora.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /Contact/AddressBook/Parser -->
+      <file role="php" name="Builder.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" name="Converter.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" name="CSV.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="php" name="Parser.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+     </dir> <!-- /Contact/AddressBook -->
+     <file role="php" name="AddressBook.php">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+    </dir> <!-- /Contact -->
+    <dir name="data">
+     <dir name="CSV">
+      <dir name="Config">
+       <file role="data" name="KMail.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Mozilla.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Outlook.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Palm.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="WAB.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Yahoo.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /data/CSV/Config -->
+      <dir name="Defs">
+       <file role="data" name="KMail.def">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Mozilla.def">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Outlook.def">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Palm.def">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="WAB.def">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="data" name="Yahoo.def">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /data/CSV/Defs -->
+      <dir name="Header">
+       <dir name="KMail">
+        <file role="data" name="en.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+       </dir> <!-- /data/CSV/Header/KMail -->
+       <dir name="Outlook">
+        <file role="data" name="en.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+       </dir> <!-- /data/CSV/Header/Outlook -->
+       <dir name="WAB">
+        <file role="data" name="de.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <file role="data" name="en.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+       </dir> <!-- /data/CSV/Header/WAB -->
+       <dir name="Yahoo">
+        <file role="data" name="en.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+       </dir> <!-- /data/CSV/Header/Yahoo -->
+      </dir> <!-- /data/CSV/Header -->
+     </dir> <!-- /data/CSV -->
+     <dir name="Defs">
+      <file role="data" name="Eudora.def">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+     </dir> <!-- /data/Defs -->
+    </dir> <!-- /data -->
+    <dir name="docs">
+     <dir name="examples">
+      <dir name="files">
+       <file role="doc" name="Eudora.txt">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="KMail.csv">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="Outlook.CSV">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="Palm.csv">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="Thunderbird.csv">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="WAB-selectable.csv">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="WAB.csv">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="Yahoo.csv">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /docs/examples/files -->
+      <dir name="include">
+       <file role="doc" name="footer.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="head.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="header.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="records.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="simulations.php">
+        <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+      </dir> <!-- /docs/examples/include -->
+      <file role="doc" name="action-export.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="doc" name="action-import.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="doc" name="export.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="doc" name="import.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="doc" name="index.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+     </dir> <!-- /docs/examples -->
+    </dir> <!-- /docs -->
+   </dir> <!-- / -->
+  </filelist>
+ </release>
+ <changelog>
+   <release>
     <version>0.1.0dev1</version>
     <date>2004-12-18</date>
     <license>BSD License</license>
     <state>devel</state>
-    <notes>Initial release of Contact_AddressBook</notes>
-    <deps>
-      <dep type="pkg" rel="ge" version="1.2.1" optional="no">PEAR</dep>
-      <dep type="pkg" rel="ge" version="1.0.3" optional="no">File</dep>
-      <dep type="pkg" rel="ge" version="2.0.1" optional="no">Net_UserAgent_Detect</dep>
-    </deps>
-    <provides type="class" name="Contact_AddressBook" />
-    <provides type="function" name="Contact_AddressBook::set" />
-    <provides type="class" name="Contact_AddressBook_Builder" />
-    <provides type="function" name="Contact_AddressBook_Builder::set" />
-    <provides type="class" name="Contact_AddressBook_Converter" />
-    <provides type="function" name="Contact_AddressBook_Converter::setDefinitionDir" />
-    <provides type="function" name="Contact_AddressBook_Converter::loadDefinitionFile" />
-    <provides type="function" name="Contact_AddressBook_Converter::setDefinition" />
-    <provides type="function" name="Contact_AddressBook_Converter::prepare" />
-    <provides type="function" name="Contact_AddressBook_Converter::performConvert" />
-    <provides type="function" name="Contact_AddressBook_Converter::convertTo" />
-    <provides type="function" name="Contact_AddressBook_Converter::convertFrom" />
-    <provides type="class" name="Contact_AddressBook_Parser" />
-    <provides type="function" name="Contact_AddressBook_Parser::setInput" />
-    <provides type="class" name="Contact_AddressBook_Builder_csv" extends="Contact_AddressBook_Builder" />
-    <provides type="function" name="Contact_AddressBook_Builder_csv::build" />
-    <provides type="class" name="Contact_AddressBook_Builder_eudora" extends="Contact_AddressBook_Builder" />
-    <provides type="function" name="Contact_AddressBook_Builder_eudora::build" />
-    <provides type="class" name="Contact_AddressBook_Builder_csv_netscape" extends="Contact_AddressBook_Builder_csv" />
-    <provides type="class" name="Contact_AddressBook_Builder_csv_outlook_express" extends="Contact_AddressBook_Builder_csv" />
-    <provides type="function" name="Contact_AddressBook_Builder_csv_outlook_express::build" />
-    <provides type="class" name="Contact_AddressBook_Parser_csv" extends="Contact_AddressBook_Parser" />
-    <provides type="function" name="Contact_AddressBook_Parser_csv::parse" />
-    <provides type="class" name="Contact_AddressBook_Parser_eudora" extends="Contact_AddressBook_Parser" />
-    <provides type="function" name="Contact_AddressBook_Parser_eudora::parse" />
-    <filelist>
-      <file role="php" baseinstalldir="" md5sum="b9b0267aca471b8aacdbeb3a29c51d8b" name="Contact/AddressBook.php"/>
-      <file role="php" baseinstalldir="" md5sum="a7b1a485304574ebbb9c1a04fa3769cc" name="Contact/AddressBook/Builder.php"/>
-      <file role="php" baseinstalldir="" md5sum="4baf67b817768f1712d4110f69387e77" name="Contact/AddressBook/Converter.php"/>
-      <file role="php" baseinstalldir="" md5sum="15cd50328e0c1a86a1b1e52d70122f0b" name="Contact/AddressBook/Parser.php"/>
-      <file role="php" baseinstalldir="" md5sum="f68d9dad62ee6fc9a88c9919250ceca0" name="Contact/AddressBook/Builder/csv.php"/>
-      <file role="php" baseinstalldir="" md5sum="a0e8f4426e27ad87fc7f04021221ae8a" name="Contact/AddressBook/Builder/eudora.php"/>
-      <file role="php" baseinstalldir="" md5sum="1224d5dba9361e9788daa9445e7c8437" name="Contact/AddressBook/Builder/csv/netscape.php"/>
-      <file role="php" baseinstalldir="" md5sum="d5d70633d52aee1ccb8760b405926168" name="Contact/AddressBook/Builder/csv/outlook_express.php"/>
-      <file role="php" baseinstalldir="" md5sum="bb926d14c5788ef575bd757e41b436bb" name="Contact/AddressBook/Parser/csv.php"/>
-      <file role="php" baseinstalldir="" md5sum="1c4dc0f342b601628aad2017abd18232" name="Contact/AddressBook/Parser/eudora.php"/>
-      <file role="data" baseinstalldir="" md5sum="0e37fa4798b3c0b933c4ace9a8473426" name="definitions/csv_netscape.def"/>
-      <file role="data" baseinstalldir="" md5sum="cb36f3d263ba28744f87e669f647a336" name="definitions/csv_outlook_express.def"/>
-      <file role="data" baseinstalldir="" md5sum="a14c8c0ff76a6694c9a3128ca9e872b2" name="definitions/eudora.def"/>
-      <file role="doc" baseinstalldir="" md5sum="b3bbb0a2dce5bf45d1701c00ca274f3e" name="examples/export2browser.php"/>
-      <file role="doc" baseinstalldir="" md5sum="a32da3ccbe6d0476b0d7349cb72c1ff7" name="examples/export2file.php"/>
-      <file role="doc" baseinstalldir="" md5sum="fa601171652f6611adc75e345063ffdf" name="examples/import.php"/>
-      <file role="doc" baseinstalldir="" md5sum="24561ae2e02268e2338253af2c1b4d78" name="examples/books/csv_netscape.csv"/>
-      <file role="doc" baseinstalldir="" md5sum="bb62190fc70f36d528c90006c51f44d8" name="examples/books/csv_outlook_express.csv"/>
-      <file role="doc" baseinstalldir="" md5sum="f902e1d4ef6449beb760ad6a83cd0a41" name="examples/books/eudora.txt"/>
-      <file role="doc" baseinstalldir="" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="examples/outputs/csv_netscape.csv"/>
-      <file role="doc" baseinstalldir="" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="examples/outputs/csv_outlook_express.csv"/>
-      <file role="doc" baseinstalldir="" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="examples/outputs/eudora.txt"/>
-      <file role="doc" baseinstalldir="" md5sum="cee001296184bf8ea52dae3704b310a6" name="gateaway/csv_netscape.txt"/>
-      <file role="doc" baseinstalldir="" md5sum="ad72df898ae212136304f67f319859fd" name="gateaway/csv_outlook_express.txt"/>
-      <file role="doc" baseinstalldir="" md5sum="7b727a5e6443d88d2698eb72eb73ab31" name="gateaway/eudora.txt"/>
-      <file role="doc" baseinstalldir="" md5sum="787aa17aac46c3bb9c2cc867cf293b8b" name="README.txt"/>
-    </filelist>
-  </release>
-  <changelog>
-    <release>
-      <version>0.1.0dev1</version>
-      <date>2004-12-18</date>
-      <license>BSD License</license>
-      <state>devel</state>
-      <notes>Initial release of Contact_AddressBook</notes>
-    </release>
-  </changelog>
+    <notes>Initial release of Contact_AddressBook
+    </notes>
+   </release>
+   <release>
+    <version>0.4.0alpha1</version>
+    <date>2005-08-17</date>
+    <license>BSD License</license>
+    <state>alpha</state>
+    <notes>* Fixed bug in Contact_AddressBook_Builder_Eudora::build(), wrong way on &quot;notes&quot; tag
+* Fixed bug causes by File_CSV with force config (thanks to Andy Crain &lt;crain@fuse.net&gt;)
+* Fixed bug in Contact_AddressBook_Converter::prepare(), Contact_AddressBook_Converter::$isPrepared never assigned (thanks to Andy Crain &lt;crain@fuse.net&gt;)
+* Reconstructed file and directory structure
+* Renamed Contact_AddressBook_Builder_eudora to Contact_AddressBook_Eudora
+* Renamed Contact_AddressBook_Builder_csv to Contact_AddressBook_CSV
+* Renamed Contact_AddressBook_Parser_eudora to Contact_AddressBook_Parser_Eudora
+* Renamed Contact_AddressBook_Parser_CSV to Contact_AddressBook_Parser_csv
+* Renamed several files to pretty names
+* Moved all CSV address book related files under PEAR data dir &quot;Contact_AddressBook/CSV&quot;
+* Renamed format call names, see added logs
+* Changed the examples
+* Changed the release state to alpha
+- Removed &quot;definitions&quot; dir, now all definition files are under &quot;Defs&quot; dir
+- Removed Contact_AddressBook::isExportable(), each supported formats are exportable
+- Removed Contact_AddressBook::isImportable(), each supported formats are importable
+- Removed Contact_AddressBook_Builder_csv_netscape
+- Removed Contact_AddressBook_Builder_csv_outlook_express
++ Added new method Contact_AddressBook::isSupported(), find out the whether the format is supported or not
++ Added new class Contact_AddressBook_CSV for working with CSV
++ Added new class Contact_AddressBook_Converter_CSV, for CSV converting
++ Added several CSV related files in PEAR data dir &quot;Contact_AddressBook/CSV&quot;
++ Added new support for KMail (KDE Mailer), Ms Outlook, Palm Pilot and Yahoo!
++ Added several call names (case-insensitive),
+csv_wab =&gt; Ms Windows Address Book CSV
+csv_outlookexpress  =&gt; Ms Windows Outlook Express CSV (equal with csv_wab)
+csv_outlook =&gt; Ms Outlook CSV
+csv_mozilla =&gt; Mozilla Mailer CSV
+csv_thunderbird =&gt; Mozilla Thunderbird CSV (equal with csv_mozilla and csv_netscape)
+csv_netscape =&gt; Netscape Mailer CSV (equal with csv_mozilla and csv_thunderbird)
+csv_yahoo =&gt; Yahoo! CSV
+csv_palm =&gt; Palm CSV.
+eudora =&gt; Eudora address book
++ Upgraded File package dependency to version  &gt;= 1.2.1
+    </notes>
+   </release>
+ </changelog>
 </package>
