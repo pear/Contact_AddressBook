@@ -1,0 +1,70 @@
+; +---------------------------------------------------------------------------------+
+; | PEAR::Contact_AddressBook Definition File                                       |
+; | Copyright (c) 2004-2005 Firman Wandayandi                                       |
+; +---------------------------------------------------------------------------------+
+; | This file contains Palm Pilot CSV address book default fields definition.       |
+; +---------------------------------------------------------------------------------+
+; CVS: $Id$
+
+; Last Name
+0 = lastname
+
+; First Name
+1 = firstname
+
+; Title
+2 = title
+
+; Company
+3 = organization
+
+; Work
+4 = work_address
+
+; Home
+5 = home_address
+
+; Fax
+6 = home_fax
+
+; Other
+; 7 =
+
+; E-mail
+8 = email
+
+; Street
+9 = home_address
+
+; City
+10 = home_city
+
+; State
+11 = home_state
+
+; Zip
+12 = home_zipcode
+
+; Country
+13 = home_country
+
+; Custom1 [Ignored]
+; 14 =
+
+; Custom2 [Ignored]
+; 15 =
+
+; Custom3 [Ignored]
+; 16 =
+
+; Custom4 [Ignored]
+; 17 =
+
+; Note Card [Ignored]
+; 18 =
+
+; Private (Yes/No) [Ignored]
+; 19 =
+
+; Category Name [Ignored]
+; 20 =

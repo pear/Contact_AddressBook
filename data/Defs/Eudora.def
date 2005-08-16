@@ -1,0 +1,95 @@
+; +---------------------------------------------------------------------------------+
+; | PEAR::Contact_AddressBook Definition File                                       |
+; | Copyright (c) 2004-2005 Firman Wandayandi                                       |
+; +---------------------------------------------------------------------------------+
+; | This file contains Eudora address book default fields definition.               |
+; +---------------------------------------------------------------------------------+
+; CVS: $Id$
+
+; First Name
+first           = firstname
+
+; Last Name
+last            = lastname
+
+; Display Name
+displayname     = displayname
+
+; Nickname
+nickname        = nickname
+
+; Email Address
+email           = email
+
+; Primary Email Address List [Ignored]
+; email*, (*) is a number begin from 2
+; email2 =
+; email3 =
+
+; Additional Email Address
+; otheremail =
+
+; Additional Email Address List [Ignored]
+; otheremail*, (*) is a number begin from 2
+; otheremail2 =
+; otheremail3 =
+
+; Home phone
+phone           = home_phone
+
+; Home Fax
+fax             = home_fax
+
+; Mobile
+mobile          = mobile
+
+; Home Street Address
+address         = home_address
+
+; Home City
+city            = home_city
+
+; Home State/Province
+state           = home_state
+
+; Home Zip/Postal Code
+zip             = home_zipcode
+
+; Home Country
+country         = home_country
+
+; Work Street Address
+address2        = work_address
+
+; Work Phone
+phone2          = work_phone
+
+; Work Fax
+fax2            = work_fax
+
+; Work City
+city2           = work_city
+
+; Work State/Province
+state2          = work_state
+
+; Work ZIP/Postal Code
+zip2            = work_zipcode
+
+; Work Country
+country2        = work_country
+
+; Work Homepage
+web2            = work_homepage
+
+; Job Title
+title           = job_title
+
+; Company/Organization
+company         = organization
+
+; Personal Homepage
+web             = homepage
+
+; Notes
+notes           = notes

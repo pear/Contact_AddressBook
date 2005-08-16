@@ -1,0 +1,136 @@
+; +---------------------------------------------------------------------------------+
+; | PEAR::Contact_AddressBook Definition File                                       |
+; | Copyright (c) 2004-2005 Firman Wandayandi                                       |
+; +---------------------------------------------------------------------------------+
+; | This file contains KMail CSV address book default fields definition.            |
+; +---------------------------------------------------------------------------------+
+; CVS: $Id$
+
+; Formatted Name
+0 = firstname
+
+; Family Name
+1 = middlename
+
+; Given Name
+2 = displayname
+
+; Additional Names
+3 = lastname
+
+; Honorific Prefixes
+; 4 =
+
+; Honorific Suffixes [Ignored]
+; 5 =
+
+; Nick Name
+6 = nickname
+
+; Birthday [Ignored]
+; 7 =
+
+; Home Address Street
+8 = home_address
+
+; Home Address Locality
+; 9 =
+
+; Home Address Region
+; 10 =
+
+; Home Address Postal Code
+11 = home_zipcode
+
+; Home Address Country
+12 = home_country
+
+; Home Address Label [Ignored]
+; 13 =
+
+; Business Address Street
+14 = work_address
+
+; Business Address Locality [Ignored]
+; 15 =
+
+; Business Address Region [Ignored]
+; 16 =
+
+; Business Address Postal Code
+17 = work_zipcode
+
+; Business Address Country
+18 = work_country
+
+; Business Address Label [Ignored]
+; 19 =
+
+; Home Phone
+20 = home_phone
+
+; Business Phone
+21 = work_phone
+
+; Mobile Phone
+22 = mobile
+
+; Home Fax
+23 = home_fax
+
+; Business Fax
+24 = work_fax
+
+; Car Phone [Ignored]
+; 25 =
+
+; ISDN [Ignored]
+; 26 =
+
+; Pager
+27 = pager
+
+; Email Address
+28 = email
+
+; Mail Client [Ignored]
+; 29 =
+
+; Title
+30 = title
+
+; Role
+31 = job_title
+
+; Organization
+32 = organization
+
+; Note
+33 = notes
+
+; URL
+34 = homepage
+
+; Department
+35 = department
+
+; Profession [Ignored]
+; 36 =
+
+; Assistant's Name [Ignored]
+; 37 =
+
+; Manager's Name [Ignored]
+; 38 =
+
+; Spouse's Name [Ignored]
+; 39 =
+
+; Office [Ignored]
+; 40 =
+
+; IM Address [Ignored]
+; 41 =
+
+; Anniversary [Ignored]
+; 42

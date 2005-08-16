@@ -1,0 +1,283 @@
+; +---------------------------------------------------------------------------------+
+; | PEAR::Contact_AddressBook Definition File                                       |
+; | Copyright (c) 2004-2005 Firman Wandayandi                                       |
+; +---------------------------------------------------------------------------------+
+; | This file contains Ms Outlook CSV address book default fields definition.       |
+; +---------------------------------------------------------------------------------+
+; CVS: $Id$
+
+; Title
+0 = title
+
+; First Name
+1 = firstname
+
+; Middle Name
+2 = middlename
+
+; Last Name
+3 = lastname
+
+; Suffix [Ignored]
+; 4 =
+
+; Company
+5 = organization
+
+; Department
+6 = department
+
+; Job Title
+7 = job_title
+
+; Business Street
+8 = work_address
+
+; Business Street 2 [Ignored]
+; 9 =
+
+; Business Street 3 [Ignored]
+; 10 =
+
+; Business City
+11 = work_city
+
+; Business State
+12 = work_state
+
+; Business Postal Code
+13 = work_zipcode
+
+; Business Country
+14 = work_country
+
+; Home Street
+15 = home_address
+
+; Home Street 2 [Ignored]
+; 16 =
+
+; Home Street 3 [Ignored]
+; 17 =
+
+; Home City
+18 = home_city
+
+; Home State
+19 = home_state
+
+; Home Postal Code
+20 = home_zipcode
+
+; Home Country
+21 = home_country
+
+; Other Street [Ignored]
+; 22 =
+
+; Other Street 2 [Ignored]
+; 23 =
+
+; Other Street 3 [Ignored]
+; 24 =
+
+; Other City [Ignored]
+; 25 =
+
+; Other State [Ignored]
+; 26 =
+
+; Other Postal Code [Ignored]
+; 27 =
+
+; Other Country [Ignored]
+; 28 =
+
+; Assistant's Phone [Ignored]
+; 29 =
+
+; Business Fax
+30 = work_fax
+
+; Business Phone
+31 = work_phone
+
+; Business Phone 2 [Ignored]
+; 32 =
+
+; Callback [Ignored]
+; 33 =
+
+; Car Phone [Ignored]
+; 34 =
+
+; Company Main Phone
+35 = work_phone
+
+; Home Fax
+36 = home_fax
+
+; Home Phone
+37 = home_phone
+
+; Home Phone 2 [Ignored]
+; 38 =
+
+; ISDN [Ignored]
+; 39 =
+
+; Mobile Phone
+40 = mobile
+
+; Other Fax [Ignored]
+; 41 =
+
+; Other Phone [Ignored]
+; 42 =
+
+; Pager
+43 = pager
+
+; Primary Phone [Ignored]
+; 44 =
+
+; Radio Phone [Ignored]
+; 45 =
+
+; TTY/TDD Phone [Ignored]
+; 46 =
+
+; Telex [Ignored]
+; 47 =
+
+; Account [Ignored]
+; 48 =
+
+; Anniversary [Ignored]
+; 49 =
+
+; Assistant's Name [Ignored]
+; 50 =
+
+; Billing Information [Ignored]
+; 51 =
+
+; Birthday [Ignored]
+; 52 =
+
+; Business Address PO Box [Ignored]
+; 53 =
+
+; Categories [Ignored]
+; 54 =
+
+; Children [Ignored]
+; 55 =
+
+; Directory Server [Ignored]
+; 56
+
+; E-mail Address
+57 = email
+
+; E-mail Type [Ignored]
+; 58 =
+
+; E-mail Display Name
+59 = displayname
+
+; E-mail 2 Address [Ignored]
+; 60 =
+
+; E-mail 2 Type [Ignored]
+; 61 =
+
+; E-mail 2 Display Name [Ignored]
+; 62 =
+
+; E-mail 3 Address [Ignored]
+; 63 =
+
+; E-mail 3 Type [Ignored]
+; 64 =
+
+; E-mail 3 Display Name [Ignored]
+; 65 =
+
+; Gender [Ignored]
+; 66 =
+
+; Government ID Number [Ignored]
+; 67 =
+
+; Hobby [Ignored]
+; 68 =
+
+; Home Address PO Box [Ignored]
+; 69 =
+
+; Initials [Ignored]
+; 70 =
+
+; Internet Free Busy [Ignored]
+; 71 =
+
+; Keywords [Ignored]
+; 72 =
+
+; Language [Ignored]
+; 73 =
+
+; Location [Ignored]
+; 74 =
+
+; Manager's Name [Ignored]
+; 75 =
+
+; Mileage [Ignored]
+; 76 =
+
+; Notes
+77 = notes
+
+; Office Location [Ignored]
+; 78 =
+
+; Organizational ID Number [Ignored]
+; 79 =
+
+; Other Address PO Box [Ignored]
+; 80 =
+
+; Priority [Ignored]
+; 81 =
+
+; Private [Ignored]
+; 82 =
+
+; Profession [Ignored]
+; 83 =
+
+; Referred By [Ignored]
+; 84 =
+
+; Sensitivity [Ignored]
+; 85 =
+
+; Spouse [Ignored]
+; 86 =
+
+; User 1 [Ignored]
+; 87 =
+
+; User 2 [Ignored]
+; 88 =
+
+; User 3 [Ignored]
+; 89 =
+
+; User 4 [Ignored]
+; 90 =
+
+; Web Page
+91 = homepage
