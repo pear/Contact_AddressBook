@@ -4,7 +4,7 @@
 // {{{ Header
 
 /**
- * File contains Contact_AddressBook_Parser class.
+ * File contains Contact_AddressBook_Parser_Eudora class.
  *
  * PHP versions 4 and 5
  *
@@ -55,15 +55,15 @@
 // {{{ Dependencies
 
 /**
- * Require File for handling files.
+ * Load Contact_AddressBook_Parser as the base class.
  */
-require_once 'File.php';
+require_once 'Contact/AddressBook/Parser.php';
 
 // }}}
-// {{{ Class: Contact_AddressBook_Parser
+// {{{ Class: Contact_AddressBook_Parser_Eudora
 
 /**
- * Base class for Contact_AddressBook parser classes.
+ * Class for handling Eudora address book format parse.
  *
  * @category File Formats
  * @package Contact_AddressBook
@@ -73,48 +73,8 @@ require_once 'File.php';
  *          BSD License
  * @version Release: @package_version@
  */
-class Contact_AddressBook_Parser
+class Contact_AddressBook_Parser_Eudora extends Contact_AddressBook_Parser
 {
-    // {{{ Properties
-
-    /**
-     * Parse result.
-     *
-     * @var array
-     * @access protected
-     */
-    var $result = array();
-
-    /**
-     * File to parse.
-     *
-     * @var string
-     * @access protected
-     */
-    var $file = '';
-
-    // }}}
-    // {{{ setFile()
-
-    /**
-     * Set the input file to parse.
-     *
-     * @param string $file Input filename.
-     *
-     * @return bool|PEAR_Error TRUE on succeed or PEAR_Error on failure.
-     * @access public
-     */
-    function setFile($file)
-    {
-        if (!file_exists($file)) {
-            return PEAR::raiseError('No such file \'' . $file . '\'');
-        }
-
-        $this->file = $file;
-        return true;
-    }
-
-    // }}}
     // {{{ parse()
 
     /**
@@ -125,78 +85,65 @@ class Contact_AddressBook_Parser
      */
     function parse()
     {
-        return PEAR::raiseError('Not implemented');
-    }
+        $contents = Contact_AddressBook_Parser::getFileContents();
 
-    // }}}
-    // {{{ getResult()
-
-    /**
-     * Get parse result data.
-     *
-     * @return array The result array.
-     * @access public
-     */
-    function getResult()
-    {
-        return $this->result;
-    }
-
-    // }}}
-    // {{{ numRows()
-
-    /**
-     * Returns the number of rows in a result.
-     *
-     * @return int The number of rows.
-     * @access public
-     */
-    function numRows()
-    {
-        return count($this->result);
-    }
-
-    // }}}
-    // {{{ reset()
-
-    /**
-     * Reset the parser.
-     * This method set the result into empty array.
-     *
-     * @access public
-     */
-    function reset()
-    {
-        $this->result = array();
-    }
-
-    // }}}
-    // {{{ getFileContents()
-
-    /**
-     * Read the input file to gets file contents.
-     *
-     * @return string|PEAR_Error String file contents on succeed or
-     *                           PEAR_Error on failure.
-     * @access protected
-     * @see File::read()
-     * @static
-     */
-    function getFileContents()
-    {
-        $contents = '';
-        while($res = File::read($this->file)) {
-            if (PEAR::isError($res)) {
-                return $res;
-            }
-
-            $contents .= $res;
+        if ($contents == '') {
+            return PEAR::raiseError("File '{$this->file}' is empty");
         }
 
-        return $contents;
-    }
+        $data = array();
 
-    // }}}
+        // Grab all alias keyword.
+        if (preg_match_all('/alias\s+(\w+)\s*(.*)\n/', $contents,
+                           $matches, PREG_SET_ORDER))
+        {
+            $i = 0;
+            foreach ($matches as $raw) {
+                $emails = explode(',', $raw[2]);
+                $data[$i]['nickname'] = $raw[1];
+                foreach ($emails as $j => $email) {
+                    if ($j == 0) {
+                        $data[$i]['email'] = $email;
+                    } else {
+                        $data[$i]['email' . ($j + 1)] = $email;
+                    }
+                }
+                $i++;
+            }
+        }
+
+        // For count alias, grab the note keyword for nickname.
+        // Where detail informations are place here.
+        foreach ($data as $i => $val) {
+            $regex = '/note\s+' . $val['nickname'] . '\s+(<.*\>)(.*)\n/';
+            if (preg_match_all($regex, $contents, $matches, PREG_SET_ORDER)) {
+                foreach ($matches as $detail) {
+                    $data[$i]['notes'] = $detail[2]; 
+                    if (preg_match_all('|<([^>]+)>|U', $detail[1], $matches_a))
+                    {
+                        foreach ($matches_a[1] as $data_a) {
+                            list($field, $value) = explode(':', $data_a, 2);
+                            if ($field == 'otheremail') {
+                                $emails = explode(chr(3), $value);
+                                foreach ($emails as $j => $email) {
+                                    if ($j == 0) {
+                                        $data[$i]['otheremail'] = $email;
+                                    } else {
+                                        $data[$i]['otheremail' . ($j + 1)] = $email;
+                                    }
+                                }
+                                continue;
+                            }
+                            $data[$i][$field] = $value;
+                        }
+                    }
+                }
+            }
+        }
+
+        $this->result = $data;
+        return true;
+    }
 }
 
 // }}}

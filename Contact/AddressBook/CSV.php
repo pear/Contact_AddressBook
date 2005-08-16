@@ -4,17 +4,15 @@
 // {{{ Header
 
 /**
- * $ShortFileDescription$
+ * File contains Contact_AddressBook_CSV class.
  *
- * $LongFileDescription$
- *
- * PHP version $PHPVersion$
+ * PHP versions 4 and 5
  *
  * LICENSE:
  *
  * BSD License
  *
- * Copyright (c) $CopyrightYear$ Firman Wandayandi
+ * Copyright (c) 2004-2005 Firman Wandayandi
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,23 +42,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category $CategoryName$
- * @package $PackageName$
+ * @category File Formats
+ * @package Contact_AddressBook
  * @author Firman Wandayandi <firman@php.net>
- * @copyright Copyright (c) $CopyrightYear$ Firman Wandayandi
+ * @copyright Copyright (c) 2004-2005 Firman Wandayandi
  * @license http://www.opensource.org/licenses/bsd-license.php
  *          BSD License
  * @version CVS: $Id$
- * @since File available since Release 0.2.0dev1
+ * @since File available since Release 0.4.0alpha1
  */
-
-// }}}
-// {{{ Dependencies
-
-/**
- * Load PEAR for error handling.
- */
-require_once 'PEAR.php';
 
 // }}}
 // {{{ Global Variables
@@ -68,190 +58,137 @@ require_once 'PEAR.php';
 /**
  * CSV Formats informations.
  *
- * @global array $GLOBALS['Contact_AddressBook_CSV_configs']
- * @name $Contact_AddressBook_CSV_configs
+ * @global array $GLOBALS['_Contact_AddressBook_CSV_configs']
+ * @name $_Contact_AddressBook_CSV_configs
  */
-$GLOBALS['Contact_AddressBook_CSV_configs'] = array(
-    'wab'               => 'Contact/AddressBook/CSV/Config/WAB.php',
-    'outlookexpress'    => 'Contact/AddressBook/CSV/Config/WAB.php',
-    'outlook'           => 'Contact/AddressBook/CSV/Config/Outlook.php',
-    'mozilla'           => 'Contact/AddressBook/CSV/Config/Mozilla.php',
-    'nestcape'          => 'Contact/AddressBook/CSV/Config/Mozilla.php',
-    'thunderbird'       => 'Contact/AddressBook/CSV/Config/Mozilla.php',
-    'yahoo'             => 'Contact/AddressBook/CSV/Config/Yahoo.php',
-    'palm'              => 'Contact/AddressBook/CSV/Config/Palm.php'
+$GLOBALS['_Contact_AddressBook_CSV_configs'] = array(
+    'wab'               => 'WAB',
+    'outlookexpress'    => 'WAB',
+    'outlook'           => 'Outlook',
+    'mozilla'           => 'Mozilla',
+    'nestcape'          => 'Mozilla',
+    'thunderbird'       => 'Mozilla',
+    'yahoo'             => 'Yahoo',
+    'palm'              => 'Palm',
+    'kmail'             => 'KMail'
 );
 
 /**
  * CSV Formats informations.
  *
- * @global array $GLOBALS['Contact_AddressBook_CSV_headers']
- * @name $Contact_AddressBook_CSV_headers
+ * @global array $GLOBALS['_Contact_AddressBook_CSV_headers']
+ * @name $_Contact_AddressBook_CSV_headers
  */
-$GLOBALS['Contact_AddressBook_CSV_headers'] = array(
+$GLOBALS['_Contact_AddressBook_CSV_headers'] = array(
     'wab'               => 'WAB',
     'outlookexpress'    => 'WAB',
     'outlook'           => 'Outlook',
-    'yahoo'             => 'Yahoo'
-);
-
-/**
- * Field definitions.
- *
- * @global array $GLOBALS['Contact_AddressBook_CSV_definitions']
- * @name $Contact_AddressBook_CSV_definitions
- */
-$GLOBALS['Contact_AddressBook_CSV_definitions'] = array(
-    'wab'               => 'WAB.def',
-    'outlookexpress'    => 'WAB.def',
-    'outlook'           => 'Outlook.def',
-    'mozilla'           => 'Mozilla.def',
-    'nestcape'          => 'Mozilla.def',
-    'thunderbird'       => 'Mozilla.def',
-    'yahoo'             => 'Yahoo.def',
-    'palm'              => 'Palm.def'
+    'yahoo'             => 'Yahoo',
+    'kmail'             => 'KMail'
 );
 
 // }}}
-// {{{ Class: $ClassName$
+// {{{ Class: Contact_AddressBook_CSV
 
 /**
- * $ShortClassDescription$
+ * Global class for CSV class.
  *
- * $LongClassDescription$
- *
- * @category $CategoryName$
- * @package $PackageName$
+ * @category File Formats
+ * @package Contact_AddressBook
  * @author Firman Wandayandi <firman@php.net>
- * @copyright Copyright (c) $CopyrightYear$ Firman Wandayandi
+ * @copyright Copyright (c) 2004-2005 Firman Wandayandi
  * @license http://www.opensource.org/licenses/bsd-license.php
  *          BSD License
  * @version Release: @package_version@
- * @since Class available since Release 0.2.0dev1
+ * @since Class available since Release 0.4.0alpha1
  */
 class Contact_AddressBook_CSV
 {
-    // {{{ loadConfig()
-
-    /**
-     * Load CSV file format configuration for the specified CSV address book.
-     *
-     * @return bool|PEAR_Error TRUE on success or PEAR_Error on failure.
-     * @access protected
-     */
-    function loadConfig($format)
-    {
-        if (!isset($GLOBALS['Contact_AddressBook_CSV_configs'][$format]))
-        {
-            return PEAR::raiseError('Uknown format \'' . $format .'\'');
-        }
-
-        include_once $GLOBALS['Contact_AddressBook_CSV_configs'][$format];
-        if (!isset($GLOBALS['Contact_AddressBook_CSV_config']))
-        {
-            return PEAR::raiseError('Undefined configuration');
-        }
-
-        return $GLOBALS['Contact_AddressBook_CSV_config'];
-    }
-
-    // }}}
     // {{{ getConfig()
 
+    /**
+     * Load CSV file format configuration for the specified CSV address book,
+     * then return it.
+     *
+     * @param string $format Address book format.
+     *
+     * @return array|PEAR_Error An array of config on success or
+     *                          PEAR_Error on failure.
+     * @access public
+     * @static
+     */
     function getConfig($format)
     {
+        if (!isset($GLOBALS['_Contact_AddressBook_CSV_configs'][$format])) {
+            return PEAR::raiseError('No such config for \'' . $format .'\'');
+        }
+
+        $dir = Contact_AddressBook::getDataDir() . '/CSV/Config/';
+
+        $file = $dir .
+                $GLOBALS['_Contact_AddressBook_CSV_configs'][$format] . '.php';
+        include_once $file;
+
+        if (!isset($GLOBALS['_Contact_AddressBook_CSV_config']))
+        {
+            return PEAR::raiseError('Undefined config for \'' . $format .'\'');
+        }
+
         $default = array(
             'quote'             => '"',
             'linebreak'         => 'auto',
             'selectablefields'  => false
         );
 
-        $config = Contact_AddressBook_CSV::loadConfig($format);
-        if (PEAR::isError($config))
-        {
-            return $config;
-        }
-
-        return array_merge($default, $config);
+        return array_merge($default,
+                           $GLOBALS['_Contact_AddressBook_CSV_config']);
     }
 
     // }}}
-    // {{{ getDefaultDefinitionFile()
-
-    function getDefaultDefinitionFile($format)
-    {
-        if (!isset($GLOBALS['Contact_AddressBook_CSV_definitions'][$format]))
-        {
-            return PEAR::raiseError('Uknown format \'' . $format .'\'');
-        }
-
-        include_once 'PEAR/Config.php';
-        $config = new PEAR_Config;
-        $dir = $config->get('data_dir') .
-               '/Contact_AddressBook/definitions/CSV/';
-        $file = $dir . $GLOBALS['Contact_AddressBook_CSV_definitions'][$format];
-        return $file;
-    }
-
-    // }}}
-    // {{{ loadDefinition()
-
-    function loadDefinition($file)
-    {
-        ini_set('track_error', true);
-        $res = parse_ini_file($file);
-        if (empty($res))
-        {
-            return PEAR::raiseError($php_errormsg);
-        }
-
-        return $res;
-    }
-
-    // }}}
-    // {{{ loadHeader()
+    // {{{ getHeader()
 
     /**
-     * Load CSV file format configuration for the specified CSV address book.
+     * Load CSV file format configuration for the specified CSV address book,
+     * then return it.
      *
-     * @return bool|PEAR_Error TRUE on success or PEAR_Error on failure.
-     * @access protected
+     * @param string $format Address book format.
+     * @param string $language (optional) Address book languange
+     *                                    (use language code), default is "en".
+     *
+     * @return array|PEAR_Error An array of header on success or
+     *                          PEAR_Error on failure.
+     * @access public
+     * @static
      */
-    function loadHeader($format, $languange = null)
+    function getHeader($format, $language = null)
     {
-        if (!isset($GLOBALS['Contact_AddressBook_CSV_headers'][$format]))
-        {
-            return PEAR::raiseError('Uknown format \'' . $format .'\'');
+        if (!isset($GLOBALS['_Contact_AddressBook_CSV_headers'][$format])) {
+            return PEAR::raiseError('No such header for \'' . $format .'\'');
         }
 
-        if ($languange !== null)
-        {
-            $languange = 'en';
-        }
-        else
-        {
-            $languange = strtolower($languange);
+        if ($language === null) {
+            $language = 'en';
+        } else {
+            $language = strtolower($language);
         }
 
-        $dir = 'Contact/AddressBook/CSV/Header/';
-        $file = $GLOBALS['Contact_AddressBook_CSV_headers'][$format] . '/' .
-                $languange . '.php';
+        $dir = Contact_AddressBook::getDataDir() . '/CSV/Header/';
+        $file = $dir .
+                $GLOBALS['_Contact_AddressBook_CSV_headers'][$format] . '/' .
+                $language . '.php';
+        include_once $file;
 
-        include_once $dir . $file;
-        if (!isset($GLOBALS['Contact_AddressBook_CSV_header']))
-        {
-            return PEAR::raiseError('Undefined header');
+        if (!isset($GLOBALS['_Contact_AddressBook_CSV_header'])) {
+            return PEAR::raiseError('Undefined header for \'' . $format .'\'');
         }
 
-        return $GLOBALS['Contact_AddressBook_CSV_header'];
+        return $GLOBALS['_Contact_AddressBook_CSV_header'];
     }
 
     // }}}
 }
 
 // }}}
-
-print_r(Contact_AddressBook_CSV::loadHeader('yahoo', 'en'));
 
 /*
  * Local variables:

@@ -4,7 +4,7 @@
 // {{{ Header
 
 /**
- * File contains Contact_AddressBook_Parser class.
+ * File contains Contact_AddressBook_Builder_Eudora class.
  *
  * PHP versions 4 and 5
  *
@@ -55,15 +55,15 @@
 // {{{ Dependencies
 
 /**
- * Require File for handling files.
+ * Load Contact_AddressBook_Builder as the base class.
  */
-require_once 'File.php';
+require_once 'Contact/AddressBook/Builder.php';
 
 // }}}
-// {{{ Class: Contact_AddressBook_Parser
+// {{{ Class: Contact_AddressBook_Builder_Eudora
 
 /**
- * Base class for Contact_AddressBook parser classes.
+ * Class for building the Eudora address book.
  *
  * @category File Formats
  * @package Contact_AddressBook
@@ -73,127 +73,47 @@ require_once 'File.php';
  *          BSD License
  * @version Release: @package_version@
  */
-class Contact_AddressBook_Parser
+class Contact_AddressBook_Builder_Eudora extends Contact_AddressBook_Builder
 {
-    // {{{ Properties
+    // {{{ build()
 
     /**
-     * Parse result.
+     * Build the structure format.
      *
-     * @var array
-     * @access protected
-     */
-    var $result = array();
-
-    /**
-     * File to parse.
-     *
-     * @var string
-     * @access protected
-     */
-    var $file = '';
-
-    // }}}
-    // {{{ setFile()
-
-    /**
-     * Set the input file to parse.
-     *
-     * @param string $file Input filename.
-     *
-     * @return bool|PEAR_Error TRUE on succeed or PEAR_Error on failure.
+     * @return bool|PEAR_Error TRUE on success or PEAR_Error on failure.
      * @access public
      */
-    function setFile($file)
+    function build()
     {
-        if (!file_exists($file)) {
-            return PEAR::raiseError('No such file \'' . $file . '\'');
-        }
+        $this->result = '';
+        foreach ($this->data as $record) {
+            $alias = isset($record['nickname']) ? $record['nickname'] : '';
+            $this->result = 'alias ' . $alias  . ' ' . $record['email'] .
+                            PHP_EOL;
 
-        $this->file = $file;
-        return true;
-    }
-
-    // }}}
-    // {{{ parse()
-
-    /**
-     * Parse input file to gets address book data.
-     *
-     * @return bool|PEAR_Error TRUE on succeed or PEAR_Error on failure.
-     * @access public
-     */
-    function parse()
-    {
-        return PEAR::raiseError('Not implemented');
-    }
-
-    // }}}
-    // {{{ getResult()
-
-    /**
-     * Get parse result data.
-     *
-     * @return array The result array.
-     * @access public
-     */
-    function getResult()
-    {
-        return $this->result;
-    }
-
-    // }}}
-    // {{{ numRows()
-
-    /**
-     * Returns the number of rows in a result.
-     *
-     * @return int The number of rows.
-     * @access public
-     */
-    function numRows()
-    {
-        return count($this->result);
-    }
-
-    // }}}
-    // {{{ reset()
-
-    /**
-     * Reset the parser.
-     * This method set the result into empty array.
-     *
-     * @access public
-     */
-    function reset()
-    {
-        $this->result = array();
-    }
-
-    // }}}
-    // {{{ getFileContents()
-
-    /**
-     * Read the input file to gets file contents.
-     *
-     * @return string|PEAR_Error String file contents on succeed or
-     *                           PEAR_Error on failure.
-     * @access protected
-     * @see File::read()
-     * @static
-     */
-    function getFileContents()
-    {
-        $contents = '';
-        while($res = File::read($this->file)) {
-            if (PEAR::isError($res)) {
-                return $res;
+            $this->result .= 'note ' . $alias . ' ';
+            if (isset($record['nickname'])) {
+                unset($record['nickname']);
             }
 
-            $contents .= $res;
+            foreach ($record as $field => $value) {
+                if ($value == '') {
+                    continue;
+                }
+
+                if ($field == 'notes') {
+                    $this->result .= Contact_AddressBook_Builder::stripLineBreak($value);
+                } else {
+                    $this->result .= '<' .
+                                     $field . ':' .
+                                     Contact_AddressBook_Builder::stripLineBreak($value) .
+                                     '>';
+                }
+            }
+            $this->result .= PHP_EOL;
         }
 
-        return $contents;
+        return true;
     }
 
     // }}}

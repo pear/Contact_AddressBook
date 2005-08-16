@@ -42,7 +42,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category FileFormats
+ * @category File Formats
  * @package Contact_AddressBook
  * @author Firman Wandayandi <firman@php.net>
  * @copyright Copyright (c) 2004-2005 Firman Wandayandi
@@ -52,12 +52,26 @@
  */
 
 // }}}
+// {{{ Global Variables
+
+/**
+ * Definition aliases.
+ *
+ * @global array $GLOBALS['_Contact_AddressBook_definitions']
+ * @name $_Contact_AddressBook_definitions
+ * @ignore
+ */
+$GLOBALS['_Contact_AddressBook_definitions'] = array(
+    'eudora'    => 'Eudora'
+);
+
+// }}}
 // {{{ Class: Contact_AddressBook_Converter
 
 /**
  * Class for handling address book data structure converting.
  *
- * @category FileFormats
+ * @category File Formats
  * @package Contact_AddressBook
  * @author Firman Wandayandi <firman@php.net>
  * @copyright Copyright (c) 2004-2005 Firman Wandayandi
@@ -69,7 +83,13 @@ class Contact_AddressBook_Converter
 {
     // {{{ Properties
 
-    var $definitionFile = '';
+    /**
+     * Directory contains definition files.
+     *
+     * @var string
+     * @access protected
+     */
+    var $definitionDir = '';
 
     /**
      * Address Book fields definition.
@@ -103,79 +123,54 @@ class Contact_AddressBook_Converter
      */
     var $isPrepared = false;
 
-    var $format = '';
-    var $languange = 'en';
-
     // }}}
     // {{{ Constructor
 
-    /**
-     * PHP4 Compatible contructor.
-     *
-     * @param string $definitionFile Definition filename.
-     *
-     * @access public
-     * @see __construct()
-     */
-    function Contact_AddressBook_Converter($format, $languange = null)
+    function Contact_AddressBook_Converter()
     {
-        $this->__construct($format, $languange);
-    }
-
-    /**
-     * PHP5 Compatible contructor.
-     *
-     * @param string $definitionFile Definition filename.
-     *
-     * @access public
-     */
-    function __construct($format, $language = null)
-    {
-        $this->format = $format;
-        if ($language !== null)
-        {
-            $this->languange = $language;
-        }
+        $this->setDefinitionDir(Contact_AddressBook::getDataDir() . '/Defs/');
     }
 
     // }}}
-    // {{{ setDefinitionFile()
+    // {{{ setDefinitionDir()
 
-    function setDefinitionFile($file)
+    function setDefinitionDir($dir)
     {
-        $this->definitionFile = $file;
-        return $this->loadDefinition();
+        $this->definitionDir = $dir;
     }
 
     // }}}
-    // {{{ loadDefinitionFile()
+    // {{{ setFormat()
 
     /**
-     * Load the definition file.
-     * The bundle default definition files was placed at PEAR data dir.
+     * Set the address book format to convert.
      *
-     * @param string $file Definition filename.
+     * @param string $format The address book format.
      *
-     * @return bool|PEAR_Error TRUE on succeed or PEAR_Error on failure.
+     * @return bool|PEAR_Error TRUE on success or PEAR_Error on failure.
      * @access public
+     *
+     * @see Contact_AddressBook_Converter::setDefinitionFile()
      */
-    function loadDefinition()
+    function setFormat($format)
     {
-        $res = Contact_AddressBook_CSV::loadDefinition($this->definitionFile);
-        if (empty($res))
-        {
-            return PEAR::raiseError($php_errormsg);
+        $format = strtolower($format);
+
+        if (!isset($GLOBALS['_Contact_AddressBook_definitions'][$format])) {
+            return PEAR::raiseError('No such definition for \'' . $format .'\'');
         }
 
-        $this->setDefinition($res);
-        return true;
+        $file = $this->definitionDir .
+                $GLOBALS['_Contact_AddressBook_definitions'][$format] . '.def';
+
+        return $this->setDefinitionFile($file);
     }
 
     // }}}
     // {{{ setDefinition()
 
     /**
-     * Set custom definition on runtime.
+     * Set converting definition.
      *
      * @param array $definition An array of definition structure.
      *
@@ -193,16 +188,49 @@ class Contact_AddressBook_Converter
 
         // Set isPrepared flag to false, we need to reset the maps with new
         // definition.
-        if ($this->isPrepared)
-        {
-            $this->isPrepared = false;
+        if ($this->isPrepared) {
+            $this->isPrepare = false;
         }
 
         return true;
     }
 
     // }}}
-    // {{{ _prepare()
+    // {{{ setDefinitionFile()
+
+    /**
+     * Load the definition file.
+     * The bundle default definition files was placed at PEAR data dir.
+     *
+     * @param string $file Definition filename.
+     *
+     * @return bool|PEAR_Error TRUE on succeed or PEAR_Error on failure.
+     * @access public
+     *
+     * @see Contact_AddressBook_Converter::setDefinition()
+     */
+    function setDefinitionFile($file)
+    {
+        if (!is_file($file) || !file_exists($file)) {
+            return PEAR::raiseError('No such file \'' . $file . '\'');
+        }
+
+        ini_set('track_error', true);
+        $res = @parse_ini_file($file);
+        if (empty($res)) {
+            return PEAR::raiseError($php_errormsg);
+        }
+
+        $res = $this->setDefinition($res);
+        if (PEAR::isError($res)) {
+            return $res;
+        }
+
+        return true;
+    }
+
+    // }}}
+    // {{{ prepare()
 
     /**
      * Prepare map for converting.
@@ -210,17 +238,10 @@ class Contact_AddressBook_Converter
      * @return bool|PEAR_Error TRUE on succeed or PEAR_Error on failure.
      * @access private
      */
-    function _prepare()
+    function prepare()
     {
         if (empty($this->definition)) {
-            $res = $this->setDefinitionFile(
-                Contact_AddressBook_CSV::getDefaultDefinitionFile($this->format)
-            );
-
-            if (PEAR::isError($res))
-            {
-                return $res;
-            }
+            return PEAR::raiseError('Definition never set');
         }
 
         $this->mapFrom =& $this->definition;
@@ -286,7 +307,10 @@ class Contact_AddressBook_Converter
     function convertTo($data)
     {
         if (!$this->isPrepared) {
-            $this->_prepare();
+            $res = $this->prepare();
+            if (PEAR::isError($res)) {
+                return $res;
+            }
         }
 
         return $this->performConvert($this->mapTo, $data);
@@ -308,14 +332,16 @@ class Contact_AddressBook_Converter
     function convertFrom($data)
     {
         if (!$this->isPrepared) {
-            $this->_prepare();
+            $res = $this->prepare();
+            if (PEAR::isError($res)) {
+                return $res;
+            }
         }
 
         return $this->performConvert($this->mapFrom, $data);
     }
 
     // }}}
-
 }
 
 // }}}
