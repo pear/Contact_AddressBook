@@ -13,6 +13,7 @@ include_once 'include/header.php';
 <dt>5. Microsoft Windows Address Book (WAB) CSV</dt>
 <dt>6. Yahoo! Mail Address Book</dt>
 <dt>7. Eudora</dt>
+<dt>8. Gmail Address Book</dt>
 </dl>
 <dl>
 <dt><b>Examples</b></dt>

@@ -80,6 +80,7 @@ foreach ($GLOBALS['_Contact_AddressBook_simulations'] as $key => $value) {
 <option value="csv_wab">Microsoft Windows Address Book (WAB)/Outlook Express CSV</option>
 <option value="csv_palm">Palm Pilot CSV</option>
 <option value="csv_yahoo">Yahoo! Mail Address Book</option>
+<option value="csv_gmail">Gmail Address Book</option>
 </select><br />
 </div>
 <input name="submit" type="submit" id="submit" value="Import" />

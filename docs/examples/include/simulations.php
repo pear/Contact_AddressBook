@@ -41,6 +41,11 @@ $GLOBALS['_Contact_AddressBook_simulations'] = array(
         'file'      => 'Yahoo.csv',
         'format'    => 'csv_yahoo',
         'desc'      => 'Yahoo! Mail Address Book'
+    ),
+    array(
+        'file'      => 'Gmail.csv',
+        'format'    => 'csv_gmail',
+        'desc'      => 'Gmail Address Book'
     )
 );
 

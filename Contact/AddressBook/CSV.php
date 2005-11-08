@@ -70,7 +70,8 @@ $GLOBALS['_Contact_AddressBook_CSV_configs'] = array(
     'thunderbird'       => 'Mozilla',
     'yahoo'             => 'Yahoo',
     'palm'              => 'Palm',
-    'kmail'             => 'KMail'
+    'kmail'             => 'KMail',
+    'gmail'             => 'Gmail'
 );
 
 /**
@@ -84,7 +85,8 @@ $GLOBALS['_Contact_AddressBook_CSV_headers'] = array(
     'outlookexpress'    => 'WAB',
     'outlook'           => 'Outlook',
     'yahoo'             => 'Yahoo',
-    'kmail'             => 'KMail'
+    'kmail'             => 'KMail',
+    'gmail'             => 'Gmail'
 );
 
 // }}}

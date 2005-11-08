@@ -83,7 +83,8 @@ $GLOBALS['_Contact_AddressBook_CSV_definitions'] = array(
     'thunderbird'       => 'Mozilla',
     'yahoo'             => 'Yahoo',
     'palm'              => 'Palm',
-    'kmail'             => 'KMail'
+    'kmail'             => 'KMail',
+    'gmail'             => 'Gmail'
 );
 
 // }}}

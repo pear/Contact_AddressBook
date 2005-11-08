@@ -19,45 +19,12 @@ $options = array(
     'package'           => 'Contact_AddressBook',
     'license'           => 'BSD License',
     'baseinstalldir'    => '',
-    'version'           => '0.4.0alpha1',
+    'version'           => '0.5.0',
     'packagedirectory'  => $packagedir,
     'pathtopackagefile' => $packagedir,
     'state'             => 'alpha',
     'filelistgenerator' => 'file',
-    'notes'             => "* Fixed bug in Contact_AddressBook_Builder_Eudora::build(), wrong way on \"notes\" tag\n" .
-                           "* Fixed bug causes by File_CSV with force config (thanks to Andy Crain <crain@fuse.net>)\n" .
-                           "* Fixed bug in Contact_AddressBook_Converter::prepare(), Contact_AddressBook_Converter::\$isPrepared never assigned (thanks to Andy Crain <crain@fuse.net>)\n" .
-                           "* Reconstructed file and directory structure\n" .
-                           "* Renamed Contact_AddressBook_Builder_eudora to Contact_AddressBook_Eudora\n" .
-                           "* Renamed Contact_AddressBook_Builder_csv to Contact_AddressBook_CSV\n" .
-                           "* Renamed Contact_AddressBook_Parser_eudora to Contact_AddressBook_Parser_Eudora\n" .
-                           "* Renamed Contact_AddressBook_Parser_CSV to Contact_AddressBook_Parser_csv\n" .
-                           "* Renamed several files to pretty names\n" .
-                           "* Moved all CSV address book related files under PEAR data dir \"Contact_AddressBook/CSV\"\n" .
-                           "* Renamed format call names, see added logs\n" .
-                           "* Changed the examples\n" .
-                           "* Changed the release state to alpha\n" .
-                           "- Removed \"definitions\" dir, now all definition files are under \"Defs\" dir\n" .
-                           "- Removed Contact_AddressBook::isExportable(), each supported formats are exportable\n" .
-                           "- Removed Contact_AddressBook::isImportable(), each supported formats are importable\n" .
-                           "- Removed Contact_AddressBook_Builder_csv_netscape\n" .
-                           "- Removed Contact_AddressBook_Builder_csv_outlook_express\n" .
-                           "+ Added new method Contact_AddressBook::isSupported(), find out the whether the format is supported or not\n" .
-                           "+ Added new class Contact_AddressBook_CSV for working with CSV\n" .
-                           "+ Added new class Contact_AddressBook_Converter_CSV, for CSV converting\n" .
-                           "+ Added several CSV related files in PEAR data dir \"Contact_AddressBook/CSV\"\n" .
-                           "+ Added new support for KMail (KDE Mailer), Ms Outlook, Palm Pilot and Yahoo!\n" .
-                           "+ Added several call names (case-insensitive),
-csv_wab => Ms Windows Address Book CSV
-csv_outlookexpress  => Ms Windows Outlook Express CSV (equal with csv_wab)
-csv_outlook => Ms Outlook CSV
-csv_mozilla => Mozilla Mailer CSV
-csv_thunderbird => Mozilla Thunderbird CSV (equal with csv_mozilla and csv_netscape)
-csv_netscape => Netscape Mailer CSV (equal with csv_mozilla and csv_thunderbird)
-csv_yahoo => Yahoo! CSV
-csv_palm => Palm CSV.
-eudora => Eudora address book\n" .
-                           "+ Upgraded File package dependency to version  >= 1.2.1",
+    'notes'             => "* Added new support for Gmail address book",
     'summary'           => 'Address book export-import class',
     'description'       => $desc,
     'dir_roles'         => array(

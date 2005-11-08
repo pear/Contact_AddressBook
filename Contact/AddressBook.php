@@ -174,6 +174,7 @@ class Contact_AddressBook
         'csv_yahoo',
         'csv_palm',
         'csv_kmail',
+        'csv_gmail',
         'eudora'
     );
 
