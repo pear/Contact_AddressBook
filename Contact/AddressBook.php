@@ -269,7 +269,7 @@ class Contact_AddressBook
     function getDataDir()
     {
         require_once 'PEAR/Config.php';
-        $config = new PEAR_Config;
+        $config = PEAR_Config::singleton();
         return $config->get('data_dir') . '/Contact_AddressBook/data';
     }
 
