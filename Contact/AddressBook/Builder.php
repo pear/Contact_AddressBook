@@ -170,7 +170,7 @@ class Contact_AddressBook_Builder
      */
     function show()
     {
-        print htmlspecialchars($this->result);
+        print $this->result;
     }
 
     // }}}
