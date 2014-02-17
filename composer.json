@@ -1,0 +1,31 @@
+{
+    "authors": [
+        {
+            "email": "firman@php.net",
+            "name": "Firman Wandayandi",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Contact_AddressBook": "./"
+        }
+    },
+    "description": "More info available on: http://pear.php.net/package/Contact_AddressBook",
+    "include-path": [
+        "./"
+    ],
+    "license": "BSD License",
+    "name": "pear/contact_addressbook",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Contact_AddressBook",
+        "source": "https://github.com/pear/Contact_AddressBook"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
